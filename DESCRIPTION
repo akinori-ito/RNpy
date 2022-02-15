@@ -1,0 +1,13 @@
+Package: RNpy
+Title: Read (and write, in a future) Npy file using R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Akinori", "Ito", , "aito@spcom.ecei.tohoku.ac.jp", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Read a Npy file into R
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: 
+  stringr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
