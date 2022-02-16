@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Akinori", "Ito", , "aito@spcom.ecei.tohoku.ac.jp", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Read a Npy file into R
+Description: Read and write a Npy file using R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: 

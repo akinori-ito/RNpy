@@ -12,6 +12,9 @@ whatis <- function(typestr) {
   } else if (c == ">") {
     endian <- "big"
     pos <- 2
+  } else if (c == "|") {
+    endian <- "little" # it does not matter
+    pos <- 2
   }
   what <- "numeric"
   signed <- TRUE
@@ -25,11 +28,12 @@ whatis <- function(typestr) {
   } else if (c == "f") {
     what <- "numeric"
   } else if (c == "b") {
-    what <- "integer"
+    what <- "logical"
     size <- 1
   } else if (c == "B") {
     what <- "integer"
     size <- 1
+    signed <- FALSE
   } else if (c == "?") {
     what <- "logical"
   } else if (c == "c") {
@@ -118,9 +122,28 @@ read.npy <- function(filename) {
       }
     }
     ret <- res
-  } else {
+  } else if (length(shape) != 1) {
     stop("Reading more than 3-dimensional array is not implemented. sorry!")
   }
   close(con)
   ret
+}
+
+#' Write numpy binary file
+#' @param obj R object (vector, matrix, or array)
+#' @param filename filename of the npy file
+#' @param size size of each element (NA for natural size)
+#' @export
+write.npy <- function(obj,filename,size=NA) {
+  con <- file(filename,"wb")
+  if (is.vector(obj)) {
+    write.npy.vector(obj,con,size)
+  } else if (is.matrix(obj)) {
+    write.npy.matrix(obj,con,size) 
+  } else if (is.array(obj)) {
+    write.npy.array(obj,con,size)
+  } else {
+    stop("Object should be vector, matrix, or array")
+  }
+  close(con)
 }
